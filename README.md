@@ -7,11 +7,12 @@ Projekt pri OPB - napovedi nogometnih tekem.
 ## Pridobitev podatkov
 
 Naša baza bo vključevala 5 entitet:
-- uporabniki
-- lige
-- klubi
-- tekme
-- napovedi
+- uporabniki,
+- lige,
+- klubi,
+- tekme,
+- napovedi.
+
 Povezava med entitetami je predstavljena v ER diagramu v nadaljevanju.
 
 Tabela zajem-in-obdelava/obdelani-podatki/lige.csv je bila ustvarjena ročno.
