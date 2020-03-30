@@ -34,8 +34,10 @@ Obdelani podatki so shranjeni v direktoriju zajem-in-obdelava/obdelani-podatki v
 
 Entitete smo našteli že prej, povezave med njimi pa si poglejmo na ER diagramu.
 
-ER DIAGRAM
+![ER diagram](napovedi.png)
 
 ## Načrt za aplikacijo
 
-Uporabnik se bo prijavil z uporabniškim imenom in geslom. Nato bo lahko napovedal rezultate tekem. Napovedi se bodo točkovale glede na dejanski rezultat. Uporabnik bo imel torej v eni ligi določeno število točk, kar ga bo uvrstilo na lestvico vseh aktivnih uporabnikov v tej ligi. Aplikacijo lahko izkoristimo za tekmovanje med prijatelji, zadnji časti pivo in pico. :D
+Uporabnik se bo prijavil z uporabniškim imenom in geslom. Nato bo lahko napovedal rezultate tekem. Napovedi se bodo točkovale glede na dejanski rezultat. Uporabnik bo imel torej v eni ligi določeno število točk, kar ga bo uvrstilo na lestvico vseh aktivnih uporabnikov v tej ligi. Aplikacijo lahko izkoristimo za tekmovanje med prijatelji, zadnji časti pivo in pico. :)
+
+![aplikacija](ideja.png)
