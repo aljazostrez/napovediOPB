@@ -17,11 +17,11 @@ Povezava med entitetami je predstavljena v ER diagramu v nadaljevanju.
 
 Tabela zajem-in-obdelava/obdelani-podatki/lige.csv je bila ustvarjena ročno.
 
-Klubi in tekme bodo iz 5 najmočnejših evropskih nogometnih lig (Anglija, Španija, Nemčija, Italija, Francija). Te podatke smo črpali iz spletne strani [soccerway.com](https://int.soccerway.com). Zajem spletnih strani je narejen z datotekami:
+Klubi in tekme bodo iz 5 najmočnejših evropskih nogometnih lig (Anglija, Španija, Nemčija, Italija, Francija). Te podatke smo črpali iz spletne strani [soccerway.com](https://int.soccerway.com). Zajem spletnih strani je narejen z datotekama:
 - zajem-in-obdelava/zajem_klubi.py in
 - zajem-in-obdelava/zajem_tekme.py.
 
-Spletne strani so shranjene v direktoriju zajem-in-obdelava/spletne-strani (klubi) in zajem-in-obdelava/spletne-strani tekme. Obdelava (branje podatkov iz spletnih strani s pomočjo regularnih izrazov) je narejen z datotekami:
+Spletne strani so shranjene v direktorijih zajem-in-obdelava/spletne-strani (klubi) in zajem-in-obdelava/spletne-strani-tekme. Obdelava (branje podatkov iz spletnih strani s pomočjo regularnih izrazov) je narejen z datotekama:
 - zajem-in-obdelava/obdelava_klubi.py in
 - zajem-in-obdelava/obdelava_tekme.py.
 
