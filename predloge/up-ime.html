@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>Prijava</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse" style="border-radius: 0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="font-size: 16pt;" href="/">napovej.si</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="../1/{{igralni_krog}}">Anglija</a></li>
+                <li><a href="../2/{{igralni_krog}}">Italija</a></li>
+                <li><a href="../3/{{igralni_krog}}">Nemčija</a></li>
+                <li><a href="../4/{{igralni_krog}}">Španija</a></li>
+                <li><a href="../5/{{igralni_krog}}">Francija</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/odjava"><span class="glyphicon glyphicon-log-out"></span> Odjava</a></li>
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-cog"></span> Nastavitve</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <div align="center">
+        <form action="/up-ime" method="post">
+            <table>
+                <tr>
+                    <td align="right">Novo uporabniško ime: </td>
+                    <td style="padding: 5pt;"><input name="up_ime" type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Obvezno polje')" required></td>
+                </tr>
+            </table>
+            <div>
+            <a class="btn btn-primary" style="margin-top: 10pt; margin-bottom: 10pt;" href="/nastavitve">Nazaj</a>
+            <button class="btn btn-primary" style="margin-top: 10pt; margin-bottom: 10pt" type="submit">Spremeni</button>
+            </div>
+            % if napaka_up_ime:
+            <div style="color: red;">{{napaka_up_ime}}</div>
+            % end
+            % if spremenjeno:
+            <div style="color: green;">Uporabniško ime je uspešno spremenjeno!</div>
+            % end
+            </div>
+		</form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<html>
+<head>
+  <title>Napovedi</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+  % current_krog = igralni_krog
+
+  <nav class="navbar navbar-inverse" style="border-radius: 0; margin: 0">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" style="font-size: 16pt;" href="/">napovej.si</a>
+      </div>
+      <ul class="nav navbar-nav">
+        % if liga == "1":
+        <li class="active"><a href="../1/{{current_krog}}">Anglija</a></li>
+        <li><a href="../2/{{current_krog}}">Italija</a></li>
+        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="../4/{{current_krog}}">Španija</a></li>
+        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        % elif liga == "2":
+        <li><a href="../1/{{current_krog}}">Anglija</a></li>
+        <li class="active"><a href="../2/{{current_krog}}">Italija</a></li>
+        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="../4/{{current_krog}}">Španija</a></li>
+        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        % elif liga == "3":
+        <li><a href="../1/{{current_krog}}">Anglija</a></li>
+        <li><a href="../2/{{current_krog}}">Italija</a></li>
+        <li class="active"><a href="../3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="../4/{{current_krog}}">Španija</a></li>
+        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        % elif liga == "4":
+        <li><a href="../1/{{current_krog}}">Anglija</a></li>
+        <li><a href="../2/{{current_krog}}">Italija</a></li>
+        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
+        <li class="active"><a href="../4/{{current_krog}}">Španija</a></li>
+        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        % elif liga == "5":
+        <li><a href="../1/{{current_krog}}">Anglija</a></li>
+        <li><a href="../2/{{current_krog}}">Italija</a></li>
+        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="../4/{{current_krog}}">Španija</a></li>
+        <li class="active"><a href="../5/{{current_krog}}">Francija</a></li>
+        % end
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        % if uporabnik:
+        <li><a href="/odjava"><span class="glyphicon glyphicon-log-out"></span> Odjava</a></li>
+        <li><a href="/nastavitve"><span class="glyphicon glyphicon-cog"></span> Nastavitve</a></li>
+        % else:
+        <li><a href="/registracija"><span class="glyphicon glyphicon-user"></span> Registracija</a></li>
+        <li><a href="/prijava"><span class="glyphicon glyphicon-log-in"></span> Prijava</a></li>
+        % end
+      </ul>
+    </div>
+  </nav>
+
+<div style="width: 70%; float:left; padding: 20pt; padding-top: 0; overflow: hidden;  border-right: 1pt solid grey; height: 100%;" align="left">
+% lige = {"1": "Premier League", "2": "Serie A", "3": "Bundesliga", "4": "Primera Division", "5": "Ligue 1"}
+% lig = lige[liga]
+<h2>{{lig}}, krog {{krog}}</h2>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    % zadnji_krog = "34" if liga == "3" else "38"
+    % if int(krog) <= 3:
+      <li class="page-item"><a class="page-link" href="../{{liga}}/1">1</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/2">2</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/3">3</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/4">4</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/5">5</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/6">...</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
+    % elif int(krog) >= int(zadnji_krog)-2:
+      <li class="page-item"><a class="page-link" href="../{{liga}}/1">Prvi krog</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-5)}}">...</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-4)}}">{{str(int(zadnji_krog)-4)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-3)}}">{{str(int(zadnji_krog)-3)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-2)}}">{{str(int(zadnji_krog)-2)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-1)}}">{{str(int(zadnji_krog)-1)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{zadnji_krog}}">{{zadnji_krog}}</a></li>
+    % else:
+      <li class="page-item"><a class="page-link" href="../{{liga}}/1">Prvi krog</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)-3)}}">...</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)-2)}}">{{str(int(krog)-2)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)-1)}}">{{str(int(krog)-1)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{krog}}">{{krog}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)+1)}}">{{str(int(krog)+1)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)+2)}}">{{str(int(krog)+2)}}</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)+3)}}">...</a></li>
+      <li class="page-item"><a class="page-link" href="../{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
+    % end
+  </ul>
+</nav>
+
+<form id="napovediForm" action="../dodaj-napovedi/ni_napovedi" method="post">
+<table class="table">
+  % datumi = []
+  % for tekma in tekme:
+    % id = tekma[0]
+    % dom = tekma[1]
+    % gos = tekma[2]
+    % rez = tekma[3]
+    % dat = tekma[4]
+    % datumi.append(dat)
+    % try:
+    %   napovedano = next(nap for nap in napovedi if nap[0] == id)
+    % except StopIteration:
+    %   napovedano = [None, None, None, None]
+    % end
+    % rez_dom = napovedano[1]
+    % rez_gos = napovedano[2]
+    % tocke = napovedano[3] if napovedano[3] else 0
+    <tr>
+      % dan = tekma[4].day
+      % mesec = tekma[4].month
+      <td style="width: 10%">{{dan}}.{{mesec}}.</td>
+      <td style="width: 25%" style="vertical-align: middle;">{{dom}}</td>
+      % if tekma[4] > datum:
+      <td style="width: 10%" align="center"><input id="dom{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_dom}}" oninput="dodaj_trenutno_napoved(this.id)" oninvalid="this.setCustomValidity('Vnesite rezultat med 0 in 20')"></td>
+      <td style="width: 10%" align="center">&nbsp&nbsp&nbsp</td>
+      <td style="width: 10%" align="center"><input id="gos{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_gos}}" oninput="dodaj_trenutno_napoved(this.id)" oninvalid="this.setCustomValidity('Vnesite rezultat med 0 in 20')"></td>
+      % else:
+      <td style="width: 10%" align="center"><input id="dom{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_dom}}" disabled></td>
+      <td style="width: 10%" align="center">{{rez}}</td>
+      <td style="width: 10%" align="center"><input id="gos{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_gos}}" disabled></td>
+      % end
+      <td style="width: 25%" align="right">{{gos}}</td>
+      % if tekma[4] <= datum and rez not in ["Prestavljena", "Neodigrana"] and uporabnik != None:
+        % if tocke == 5:
+          <td style="width: 10%; color: green" align="right">{{tocke}}</td>
+        % elif tocke == 3:
+          <td style="width: 10%; color: green" align="right">{{tocke}}</td>
+        % elif tocke == 2:
+          <td style="width: 10%; color: green;" align="right">{{tocke}}</td>
+        % elif tocke == 0:
+          <td style="width: 10%; color: red" align="right">{{tocke}}</td>
+        % end
+      % else:
+        <td style="width: 10%;" align="right">&nbsp</td>
+      % end
+    </tr>
+  %end
+</table>
+
+% if any(d > datum for d in datumi) and uporabnik != None:
+<div align="center">
+<button class="btn btn-primary" onclick="submit_form()">Napovej</button>
+% if napovedi_shranjene:
+<div id="shranjeno" style="color: green; margin: 10pt;">
+  Vaše napovedi so uspešno shranjene!
+</div>
+% end
+% if napaka_pri_vnosu:  
+<div id="napaka" style="color: red; margin: 10pt;">
+  {{napaka_pri_vnosu}}
+</div>
+% end
+</div>
+% else:
+<div align="center">
+  <button class="btn btn-primary" onclick="submit_form()" disabled>Napovej</button>
+
+% if uporabnik == None:
+<div style="color: cornflowerblue; margin: 10pt;">
+  Za napovedovanje se morate prijaviti oz. registrirati.
+</div>
+% end
+
+</div>
+% end
+
+</form>
+</div>
+
+<div style="float:left; width: 30%; overflow: hidden; padding: 20pt; padding-top: 0; background-color: lightgray; height: 100%">
+<h2>Lestvica</h2>
+<table class="table" style="margin-top: 30pt;">
+  <tr>
+    <th style="width: 20%">Mesto</th>
+    <th style="width: 55%">Uporabnik</th>
+    <th style="width: 25%">Točke</th>
+  </tr>
+  % count = 1
+  % uporabnik_dodan = False
+  %for (up_ime, tocke) in uporabniki:
+    % if up_ime == uporabnik and count <= 6:
+      <tr style="background-color: aliceblue;">
+        <td>{{count}}</td>
+        <td>{{up_ime}}</td>
+        <td align="center">{{tocke}}</td>
+      </tr>
+      % uporabnik_dodan = True
+    % elif count <= 6:
+    <tr>
+      <td>{{count}}</td>
+      <td>{{up_ime}}</td>
+      <td align="center">{{tocke}}</td>
+    </tr>
+    % elif up_ime == uporabnik and count == 7:
+      <tr style="background-color: aliceblue;">
+        <td>{{count}}</td>
+        <td>{{up_ime}}</td>
+        <td align="center">{{tocke}}</td>
+      </tr>
+      % uporabnik_dodan = True
+      % break
+    % elif not uporabnik_dodan:
+      % if count == 7 and uporabnik:
+      <tr><td colspan="3">...</td></tr>
+      % end
+      % if up_ime == uporabnik:
+        <tr style="background-color: aliceblue;">
+          <td>{{count}}</td>
+          <td>{{up_ime}}</td>
+          <td align="center">{{tocke}}</td>
+        </tr>
+        % break
+      % end
+    % end
+    % count += 1
+  %end
+  <tr><td colspan="3">...</td></tr>
+</table>
+</div>
+
+</body>
+</html>
+
+<script>
+  var napovedi = {};
+  var napaka = false;
+  var elements = document.getElementById("napovediForm").elements;
+  for (var i = 0; i < elements.length; i++) {
+    el = elements[i]
+    if (el.value !== "" && el.value !== "Napovej") {
+      napovedi[el.id] = el.value;
+    }
+  }
+
+  function dodaj_trenutno_napoved(id) {
+    document.getElementById(id).setCustomValidity("");
+    nap = document.getElementById(id).value;
+    if (nap !== "") {
+      napovedi[id] = document.getElementById(id).value;
+    }
+    else {
+      delete napovedi[id];
+    }
+    var tekma_id = id.slice(3,);
+    if ("dom".concat(tekma_id) in napovedi & "gos".concat(tekma_id) in napovedi) {
+      napaka = false;
+    }
+    else {
+      napaka = true;
+    }
+    if (!("dom".concat(tekma_id) in napovedi) & !("gos".concat(tekma_id) in napovedi)) {
+      napaka = false;
+    }
+  }
+  function submit_form() {
+    if (napaka) {
+    }
+    else {
+      document.getElementById("napovediForm").action = "../dodaj-napovedi/".concat(JSON.stringify(napovedi));
+    }
+  }
+</script>

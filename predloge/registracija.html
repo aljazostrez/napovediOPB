@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>Registracija</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse" style="border-radius: 0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" style="font-size: 16pt;" href="/">napovej.si</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="../1/{{igralni_krog}}">Anglija</a></li>
+                <li><a href="../2/{{igralni_krog}}">Italija</a></li>
+                <li><a href="../3/{{igralni_krog}}">Nemčija</a></li>
+                <li><a href="../4/{{igralni_krog}}">Španija</a></li>
+                <li><a href="../5/{{igralni_krog}}">Francija</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Registracija</a></li>
+                <li><a href="/prijava"><span class="glyphicon glyphicon-log-in"></span> Prijava</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div align="center">
+        <form action="/registracija" method="post">
+            <table>
+                <tr>
+                    <td align="right">Uporabniško ime: </td>
+                    <td style="padding: 5pt;"><input name="up_ime" type="text" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Obvezno polje')" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Geslo: </td>
+                    <td style="padding: 5pt;"><input id="geslo" name="geslo" type="password" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Obvezno polje')" required></td>
+                </tr>
+                <tr>
+                    <td align="right">Ponovi geslo: </td>
+                    <td style="padding: 5pt;"><input id="geslo_pon" name="geslo_pon" type="password" oninput="validatePassword()" oninvalid="validatePassword()" required></td>
+                </tr>
+            </table>
+			<button class="btn btn-primary" style="margin-top: 10pt; margin-bottom: 10pt;" type="submit">Registracija</button>
+			% if napaka_up_ime:
+			<div style="color: red;">Uporabniško ime že obstaja!</div>
+			% end
+			</div>
+		</form>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+var password = document.getElementById("geslo"), 
+confirm_password = document.getElementById("geslo_pon");
+
+function validatePassword(){
+	if (confirm_password.value == "") {
+    confirm_password.setCustomValidity("Obvezno polje");
+	} else if (password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Gesli se ne ujemata");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+</script>
