@@ -129,7 +129,10 @@ dmypy.json
 .pyre/
 
 # DS_store removed
-.DS_store
+.DS_Store
 
 # authentication
 authentication.py
+
+# for presentation - only needed localy
+spremeni_rezultate.sql
