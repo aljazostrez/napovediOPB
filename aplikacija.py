@@ -405,8 +405,6 @@ def liga(liga,krog):
     )
     uporabniki = cur.fetchall()
     datum = date.today()
-    # datum = date(2020,3,13)
-    # datum = date(2020,3,14)
     return template(
         "predloge/rezultati.html",
         tekme=tekme,
