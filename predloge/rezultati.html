@@ -183,44 +183,41 @@
   </tr>
   % count = 1
   % uporabnik_dodan = False
+  % tocke_nic = "-"
   %for (up_ime, tocke) in uporabniki:
-    % if up_ime == uporabnik and count <= 6:
+    % if tocke == 0 and tocke_nic == "-":
+      % tocke_nic = count
+    % end
+    % if up_ime == uporabnik:
       <tr style="background-color: aliceblue;">
         <td>{{count}}</td>
         <td>{{up_ime}}</td>
         <td align="center">{{tocke}}</td>
       </tr>
-      % uporabnik_dodan = True
-    % elif count <= 6:
-    <tr>
-      <td>{{count}}</td>
-      <td>{{up_ime}}</td>
-      <td align="center">{{tocke}}</td>
-    </tr>
-    % elif up_ime == uporabnik and count == 7:
-      <tr style="background-color: aliceblue;">
-        <td>{{count}}</td>
-        <td>{{up_ime}}</td>
-        <td align="center">{{tocke}}</td>
-      </tr>
+      <tr><td colspan="3">...</td></tr>
       % uporabnik_dodan = True
       % break
-    % elif not uporabnik_dodan:
-      % if count == 7 and uporabnik:
+    % else:
+      % if count <= 6:
+      <tr>
+        <td>{{count}}</td>
+        <td>{{up_ime}}</td>
+        <td align="center">{{tocke}}</td>
+      </tr>
+      % elif count == 7:
       <tr><td colspan="3">...</td></tr>
-      % end
-      % if up_ime == uporabnik:
-        <tr style="background-color: aliceblue;">
-          <td>{{count}}</td>
-          <td>{{up_ime}}</td>
-          <td align="center">{{tocke}}</td>
-        </tr>
-        % break
       % end
     % end
     % count += 1
   %end
-  <tr><td colspan="3">...</td></tr>
+% if uporabnik != None and not uporabnik_dodan: # to pomeni, da uporabnik še nima točk
+  <tr style="background-color: aliceblue;">
+    <td>{{tocke_nic}}</td>
+    <td>{{uporabnik}}</td>
+    <td align="center">0</td>
+  </tr>
+  % uporabnik_dodan = True
+% end
 </table>
 </div>
 

@@ -229,7 +229,7 @@ def geslo_post():
         SELECT * FROM uporabniki
         WHERE up_ime=%s
         """,
-        (uporabnik)
+        [uporabnik]
     )
     trenutni_uporabnik = cur.fetchall()
     if trenutni_uporabnik == []:
@@ -245,7 +245,7 @@ def geslo_post():
         SET geslo=%s
         WHERE up_ime=%s
         """,
-        (geslo, uporabnik)
+        [geslo, uporabnik]
     )
     spremenjeno = True
     redirect('/geslo')
@@ -405,6 +405,7 @@ def liga(liga,krog):
     )
     uporabniki = cur.fetchall()
     datum = date.today()
+    datum = date(2020,5,15)
     return template(
         "predloge/rezultati.html",
         tekme=tekme,
