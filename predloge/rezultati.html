@@ -9,48 +9,48 @@
   <nav class="navbar navbar-inverse" style="border-radius: 0; margin: 0">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" style="font-size: 16pt;" href="/">napovej.si</a>
+        <a class="navbar-brand" style="font-size: 16pt;" href="{{ROOT}}">napovej.si</a>
       </div>
       <ul class="nav navbar-nav">
         % if liga == "1":
-        <li class="active"><a href="../1/{{current_krog}}">Anglija</a></li>
-        <li><a href="../2/{{current_krog}}">Italija</a></li>
-        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="../4/{{current_krog}}">Španija</a></li>
-        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        <li class="active"><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
+        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
+        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
+        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
         % elif liga == "2":
-        <li><a href="../1/{{current_krog}}">Anglija</a></li>
-        <li class="active"><a href="../2/{{current_krog}}">Italija</a></li>
-        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="../4/{{current_krog}}">Španija</a></li>
-        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
+        <li class="active"><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
+        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
+        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
         % elif liga == "3":
-        <li><a href="../1/{{current_krog}}">Anglija</a></li>
-        <li><a href="../2/{{current_krog}}">Italija</a></li>
-        <li class="active"><a href="../3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="../4/{{current_krog}}">Španija</a></li>
-        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
+        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
+        <li class="active"><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
+        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
         % elif liga == "4":
-        <li><a href="../1/{{current_krog}}">Anglija</a></li>
-        <li><a href="../2/{{current_krog}}">Italija</a></li>
-        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
-        <li class="active"><a href="../4/{{current_krog}}">Španija</a></li>
-        <li><a href="../5/{{current_krog}}">Francija</a></li>
+        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
+        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
+        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
+        <li class="active"><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
+        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
         % elif liga == "5":
-        <li><a href="../1/{{current_krog}}">Anglija</a></li>
-        <li><a href="../2/{{current_krog}}">Italija</a></li>
-        <li><a href="../3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="../4/{{current_krog}}">Španija</a></li>
-        <li class="active"><a href="../5/{{current_krog}}">Francija</a></li>
+        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
+        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
+        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
+        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
+        <li class="active"><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
         % end
       </ul>
       <ul class="nav navbar-nav navbar-right">
         % if uporabnik:
-        <li><a href="/odjava"><span class="glyphicon glyphicon-log-out"></span> Odjava</a></li>
-        <li><a href="/nastavitve"><span class="glyphicon glyphicon-cog"></span> Nastavitve</a></li>
+        <li><a href="{{ROOT}}odjava"><span class="glyphicon glyphicon-log-out"></span> Odjava</a></li>
+        <li><a href="{{ROOT}}nastavitve"><span class="glyphicon glyphicon-cog"></span> Nastavitve</a></li>
         % else:
-        <li><a href="/registracija"><span class="glyphicon glyphicon-user"></span> Registracija</a></li>
-        <li><a href="/prijava"><span class="glyphicon glyphicon-log-in"></span> Prijava</a></li>
+        <li><a href="{{ROOT}}registracija"><span class="glyphicon glyphicon-user"></span> Registracija</a></li>
+        <li><a href="{{ROOT}}prijava"><span class="glyphicon glyphicon-log-in"></span> Prijava</a></li>
         % end
       </ul>
     </div>
@@ -64,36 +64,36 @@
   <ul class="pagination">
     % zadnji_krog = "34" if liga == "3" else "38"
     % if int(krog) <= 3:
-      <li class="page-item"><a class="page-link" href="../{{liga}}/1">1</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/2">2</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/3">3</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/4">4</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/5">5</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/6">...</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">1</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/2">2</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/3">3</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/4">4</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/5">5</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/6">...</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
     % elif int(krog) >= int(zadnji_krog)-2:
-      <li class="page-item"><a class="page-link" href="../{{liga}}/1">Prvi krog</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-5)}}">...</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-4)}}">{{str(int(zadnji_krog)-4)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-3)}}">{{str(int(zadnji_krog)-3)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-2)}}">{{str(int(zadnji_krog)-2)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(zadnji_krog)-1)}}">{{str(int(zadnji_krog)-1)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{zadnji_krog}}">{{zadnji_krog}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">Prvi krog</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-5)}}">...</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-4)}}">{{str(int(zadnji_krog)-4)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-3)}}">{{str(int(zadnji_krog)-3)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-2)}}">{{str(int(zadnji_krog)-2)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-1)}}">{{str(int(zadnji_krog)-1)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{zadnji_krog}}">{{zadnji_krog}}</a></li>
     % else:
-      <li class="page-item"><a class="page-link" href="../{{liga}}/1">Prvi krog</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)-3)}}">...</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)-2)}}">{{str(int(krog)-2)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)-1)}}">{{str(int(krog)-1)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{krog}}">{{krog}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)+1)}}">{{str(int(krog)+1)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)+2)}}">{{str(int(krog)+2)}}</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{str(int(krog)+3)}}">...</a></li>
-      <li class="page-item"><a class="page-link" href="../{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">Prvi krog</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)-3)}}">...</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)-2)}}">{{str(int(krog)-2)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)-1)}}">{{str(int(krog)-1)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{krog}}">{{krog}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)+1)}}">{{str(int(krog)+1)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)+2)}}">{{str(int(krog)+2)}}</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)+3)}}">...</a></li>
+      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
     % end
   </ul>
 </nav>
 
-<form id="napovediForm" action="../dodaj-napovedi/ni_napovedi" method="post">
+<form id="napovediForm" action="{{ROOT}}dodaj-napovedi/ni_napovedi" method="post">
 <table class="table">
   % datumi = []
   % for tekma in tekme:
@@ -259,7 +259,7 @@
     if (napaka) {
     }
     else {
-      document.getElementById("napovediForm").action = "../dodaj-napovedi/".concat(JSON.stringify(napovedi));
+      document.getElementById("napovediForm").action = "{{ROOT}}dodaj-napovedi/".concat(JSON.stringify(napovedi));
     }
   }
 </script>
