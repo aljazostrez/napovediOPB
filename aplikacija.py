@@ -76,7 +76,7 @@ def posodobi_tocke():
 def index():
     global napaka_up_ime
     napaka_up_ime = False
-    return template('predloge/zacetna.html', igralni_krog=igralni_krog, uporabnik=uporabnik)
+    return rtemplate('predloge/zacetna.html', igralni_krog=igralni_krog, uporabnik=uporabnik)
 
 
 ################
@@ -85,7 +85,7 @@ def index():
 
 @get('/registracija')
 def registracija():
-    return template('predloge/registracija.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime)
+    return rtemplate('predloge/registracija.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime)
 
 @post('/registracija')
 def registracija_post():
@@ -142,7 +142,7 @@ def odjava():
 
 @get('/prijava')
 def prijava():
-    return template('predloge/prijava.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime)
+    return rtemplate('predloge/prijava.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime)
 
 @post('/prijava')
 def prijava_post():
@@ -178,7 +178,7 @@ def nastavitve():
     global napaka_up_ime, spremenjeno
     napaka_up_ime = False
     spremenjeno = False
-    return template('predloge/nastavitve.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime)
+    return rtemplate('predloge/nastavitve.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime)
 
 # nastavitve uporabniskega imena
 
@@ -186,7 +186,7 @@ def nastavitve():
 def up_ime():
     if not uporabnik:
         redirect('{}'.format(ROOT))
-    return template('predloge/up-ime.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime, spremenjeno=spremenjeno)
+    return rtemplate('predloge/up-ime.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime, spremenjeno=spremenjeno)
 
 @post('/up-ime')
 def up_ime_post():
@@ -228,7 +228,7 @@ def up_ime_post():
 def geslo():
     if not uporabnik:
         redirect('{}'.format(ROOT))
-    return template('predloge/geslo.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime, spremenjeno=spremenjeno)
+    return rtemplate('predloge/geslo.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime, spremenjeno=spremenjeno)
 
 
 @post('/geslo')
@@ -419,7 +419,7 @@ def liga(liga,krog):
     uporabniki = cur.fetchall()
     datum = date.today()
     datum = date(2020,5,15)
-    return template(
+    return rtemplate(
         "predloge/rezultati.html",
         tekme=tekme,
         liga=liga,
