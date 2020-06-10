@@ -14,9 +14,22 @@ psycopg2.extensions.register_type(psycopg2.extensions.UNICODE) # se znebimo prob
 # ostale knjiznice
 from datetime import date
 import ast
+import os
+
+# privzete nastavitve
+SERVER_PORT = os.environ.get('BOTTLE_PORT', 8080)
+RELOADER = os.environ.get('BOTTLE_RELOADER', True)
+ROOT = os.environ.get('BOTTLE_ROOT', '/')
+DB_PORT = os.environ.get('POSTGRES_PORT', 5432)
 
 # sporočila o napakah
 # debug(True)
+
+def rtemplate(*largs, **kwargs):
+    """
+    Izpis predloge s podajanjem spremenljivke ROOT z osnovnim URL-jem.
+    """
+    return template(ROOT=ROOT, *largs, **kwargs)
 
 # tockovanje za posodobitev tock
 def tockuj(napoved, rezultat):
@@ -89,7 +102,7 @@ def registracija_post():
     uporabniki = [up[0] for up in uporabniki]
     if up_ime in uporabniki:
         napaka_up_ime = True
-        redirect('/registracija')
+        redirect('{}registracija'.format(ROOT))
     else:
         cur.execute(
             """
@@ -103,12 +116,12 @@ def registracija_post():
             SELECT id, up_ime FROM uporabniki
             WHERE up_ime=%s
             """,
-            (up_ime)
+            (up_ime,)
         )
         trenutni_uporabnik = cur.fetchall()
         uporabnik = trenutni_uporabnik[0][1]
         uporabnik_id = trenutni_uporabnik[0][0]
-        redirect('/')
+        redirect('{}'.format(ROOT))
 
 
 ##########
@@ -120,7 +133,7 @@ def odjava():
     global uporabnik, uporabnik_id
     uporabnik = None
     uporabnik_id = None
-    redirect('/')
+    redirect('{}'.format(ROOT))
 
 
 ###########
@@ -146,12 +159,12 @@ def prijava_post():
     prijava_uporabnik = cur.fetchall()
     if prijava_uporabnik == []:
         napaka_up_ime = True
-        redirect('/prijava')
+        redirect('{}prijava'.format(ROOT))
     else:
         prijava_uporabnik = prijava_uporabnik[0]
         uporabnik_id = int(prijava_uporabnik[0])
         uporabnik = prijava_uporabnik[1]
-        redirect('/')
+        redirect('{}'.format(ROOT))
 
 
 ##############
@@ -161,7 +174,7 @@ def prijava_post():
 @get('/nastavitve')
 def nastavitve():
     if not uporabnik:
-        redirect('/')
+        redirect('{}'.format(ROOT))
     global napaka_up_ime, spremenjeno
     napaka_up_ime = False
     spremenjeno = False
@@ -172,7 +185,7 @@ def nastavitve():
 @get('/up-ime')
 def up_ime():
     if not uporabnik:
-        redirect('/')
+        redirect('{}'.format(ROOT))
     return template('predloge/up-ime.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime, spremenjeno=spremenjeno)
 
 @post('/up-ime')
@@ -184,7 +197,7 @@ def up_ime_post():
     if uporabnik == up_ime:
         print("napaka")
         napaka_up_ime = "Niste spremenili uporabniškega imena!"
-        redirect('/up-ime')
+        redirect('{}up-ime'.format(ROOT))
         return
     cur.execute(
         """
@@ -195,7 +208,7 @@ def up_ime_post():
     uporabniki = [up[0] for up in uporabniki]
     if up_ime in uporabniki:
         napaka_up_ime = "Uporabniško ime že obstaja!"
-        redirect('/up-ime')
+        redirect('{}up-ime'.format(ROOT))
         return
     cur.execute(
         """
@@ -207,14 +220,14 @@ def up_ime_post():
     )
     uporabnik = up_ime
     spremenjeno = True
-    redirect('/up-ime')
+    redirect('{}up-ime'.format(ROOT))
 
 # nastavitve gesla
 
 @get('/geslo')
 def geslo():
     if not uporabnik:
-        redirect('/')
+        redirect('{}'.format(ROOT))
     return template('predloge/geslo.html', igralni_krog=igralni_krog, napaka_up_ime=napaka_up_ime, spremenjeno=spremenjeno)
 
 
@@ -229,15 +242,15 @@ def geslo_post():
         SELECT * FROM uporabniki
         WHERE up_ime=%s
         """,
-        [uporabnik]
+        (uporabnik,)
     )
     trenutni_uporabnik = cur.fetchall()
     if trenutni_uporabnik == []:
-        redirect('/')
+        redirect('{}'.format(ROOT))
         return
     if geslo == trenutni_uporabnik[0][2]:
         napaka_up_ime = "Novo geslo je enako staremu!"
-        redirect('/geslo')
+        redirect('{}geslo'.format(ROOT))
         return
     cur.execute(
         """
@@ -245,10 +258,10 @@ def geslo_post():
         SET geslo=%s
         WHERE up_ime=%s
         """,
-        [geslo, uporabnik]
+        (geslo, uporabnik)
     )
     spremenjeno = True
-    redirect('/geslo')
+    redirect('{}geslo'.format(ROOT))
 
 
 ######################
@@ -261,7 +274,7 @@ def dodaj_napovedi(napovedi):
     napovedi_shranjene = False
     if napovedi == "ni_napovedi":
         napaka_pri_vnosu = "Napovedi niso pravilno vnešene. Pri eni od tekem si napovedal samo rezultat ene od ekip."
-        redirect("/{}/{}".format(trenutna_liga, trenuten_krog))
+        redirect("{}{}/{}".format(ROOT, trenutna_liga, trenuten_krog))
         return
     napovedi = ast.literal_eval(napovedi)
     nove_napovedi = []
@@ -279,7 +292,7 @@ def dodaj_napovedi(napovedi):
         try:
             nove_napovedi.append(list(map(int, [uporabnik_id, tekma, dom, gos])))
         except:
-            redirect("/{}/{}".format(trenutna_liga, trenuten_krog))
+            redirect("{}{}/{}".format(ROOT, trenutna_liga, trenuten_krog))
     cur.execute(
         """
         SELECT napovedi.uporabnik, napovedi.tekma, napovedi.rez_dom, napovedi.rez_gos FROM napovedi
@@ -295,7 +308,7 @@ def dodaj_napovedi(napovedi):
     nove_napovedi.sort(key=lambda x: x[1])
     if nove_napovedi == napovedi:
         napaka_pri_vnosu = "Niste spremenili nobenega rezultata."
-        redirect("/{}/{}".format(trenutna_liga, trenuten_krog))
+        redirect("{}{}/{}".format(ROOT, trenutna_liga, trenuten_krog))
         return
     napovedi_dict = {}
     for nap in napovedi:
@@ -351,7 +364,7 @@ def dodaj_napovedi(napovedi):
         )
     napaka_pri_vnosu = False
     napovedi_shranjene = True
-    redirect("/{}/{}".format(trenutna_liga, trenuten_krog))
+    redirect("{}{}/{}".format(ROOT, trenutna_liga, trenuten_krog))
     return
 
 
@@ -401,7 +414,7 @@ def liga(liga,krog):
         GROUP BY uporabniki.up_ime
         ORDER BY stevilo_tock DESC, sum(gol_razlika) ASC
         """,
-        (liga)
+        (liga,)
     )
     uporabniki = cur.fetchall()
     datum = date.today()
@@ -425,7 +438,7 @@ def liga(liga,krog):
 # PRIKLOP NA BAZO #
 ###################
 
-conn = psycopg2.connect(database=auth_baza.db, host=auth_baza.host, user=auth_baza.user, password=auth_baza.password)
+conn = psycopg2.connect(database=auth_baza.db, host=auth_baza.host, user=auth_baza.user, password=auth_baza.password, port=DB_PORT)
 conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT) # onemogocimo transakcije
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
@@ -463,4 +476,4 @@ posodobi_tocke()
 ####################
 
 # poženemo strežnik na podanih vratih, npr. http://localhost:8080/
-run(host='localhost', port=8080, reloader=True)
+run(host='localhost', port=SERVER_PORT, reloader=RELOADER)

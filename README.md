@@ -2,6 +2,9 @@
 
 Projekt pri OPB - napovedi nogometnih tekem.
 
+## Binder
+[![bottle.py](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aljazostrez/napovediOPB/master?urlpath=proxy/8080/) 
+
 # 1. faza
 
 ## Pridobitev podatkov
