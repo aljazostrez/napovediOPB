@@ -418,7 +418,6 @@ def liga(liga,krog):
     )
     uporabniki = cur.fetchall()
     datum = date.today()
-    datum = date(2020,5,15)
     return rtemplate(
         "predloge/rezultati.html",
         tekme=tekme,
