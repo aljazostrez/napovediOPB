@@ -61,10 +61,11 @@
       % mesec = tekma[4].month
       % ura = tekma[5]
       % ura_to_DT = list(map(lambda x: int(x), ura.split(":")))
-      % import datetime
+      % import datetime, pytz
+      % CET = pytz.timezone('CET')
       % uraDT = datetime.time(ura_to_DT[0],ura_to_DT[1],0)
-      % datum = datetime.datetime.now().date()
-      % ura_now = datetime.datetime.now().time()
+      % datum = datetime.datetime.now(CET).date()
+      % ura_now = datetime.datetime.now(CET).time()
       <td style="width: 10%">{{dan}}.{{mesec}}. {{ura}}</td>
       <td style="width: 25%" style="vertical-align: middle;">{{dom}}</td>
       % if tekma[4] > datum or (tekma[4] == datum and uraDT > ura_now):
@@ -73,10 +74,14 @@
       <td style="width: 10%" align="center"><input id="gos{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_gos}}" oninput="dodaj_trenutno_napoved(this.id)" oninvalid="this.setCustomValidity('Vnesite rezultat med 0 in 20')"></td>
       % else:
       <td style="width: 10%" align="center"><input id="dom{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_dom}}" disabled></td>
+      % if rez not in ["Prestavljena", "Neodigrana"]:
       <td style="width: 10%" align="center">{{rez}}</td>
+      % else:
+      <td style="width: 10%" align="center">Se igra...</td>
+      % end
       <td style="width: 10%" align="center"><input id="gos{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_gos}}" disabled></td>
       % end
-      <td style="width: 25%" align="right">{{gos}} {{ura_now}}</td>
+      <td style="width: 25%" align="right">{{gos}}</td>
       % if tekma[4] <= datum and rez not in ["Prestavljena", "Neodigrana"] and uporabnik != None:
         % if tocke == 5:
           <td style="width: 10%; color: green" align="right">{{tocke}}</td>
