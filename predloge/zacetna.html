@@ -1,52 +1,81 @@
 <html>
-<head>
-  <title>Napovedi</title>
+  <head>
+    <title>Napovedi</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-<body>
-
-  <nav class="navbar navbar-inverse" style="border-radius: 0;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" style="font-size: 16pt;" href="#">napovej.si</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a href="{{ROOT}}1/{{igralni_krog}}">Anglija</a></li>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse" style="border-radius: 0">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="font-size: 16pt" href="#"
+            >napovej.si</a
+          >
+        </div>
+        <ul class="nav navbar-nav">
+          <!-- <li><a href="{{ROOT}}1/{{igralni_krog}}">Anglija</a></li>
         <li><a href="{{ROOT}}2/{{igralni_krog}}">Italija</a></li>
         <li><a href="{{ROOT}}3/{{igralni_krog}}">Nemčija</a></li>
         <li><a href="{{ROOT}}4/{{igralni_krog}}">Španija</a></li>
-        <li><a href="{{ROOT}}5/{{igralni_krog}}">Francija</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        % if uporabnik:
-        <li><a href="{{ROOT}}odjava"><span class="glyphicon glyphicon-log-out"></span> Odjava</a></li>
-        <li><a href="{{ROOT}}nastavitve"><span class="glyphicon glyphicon-cog"></span> Nastavitve</a></li>
-        % else:
-        <li><a href="{{ROOT}}registracija"><span class="glyphicon glyphicon-user"></span> Registracija</a></li>
-        <li><a href="{{ROOT}}prijava"><span class="glyphicon glyphicon-log-in"></span> Prijava</a></li>
-        % end
-      </ul>
+        <li><a href="{{ROOT}}5/{{igralni_krog}}">Francija</a></li> -->
+          <li><a href="{{ROOT}}6/{{igralni_krog}}">Euro U21</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          % if uporabnik:
+          <li>
+            <a href="{{ROOT}}odjava"
+              ><span class="glyphicon glyphicon-log-out"></span> Odjava</a
+            >
+          </li>
+          <li>
+            <a href="{{ROOT}}nastavitve"
+              ><span class="glyphicon glyphicon-cog"></span> Nastavitve</a
+            >
+          </li>
+          % else:
+          <li>
+            <a href="{{ROOT}}registracija"
+              ><span class="glyphicon glyphicon-user"></span> Registracija</a
+            >
+          </li>
+          <li>
+            <a href="{{ROOT}}prijava"
+              ><span class="glyphicon glyphicon-log-in"></span> Prijava</a
+            >
+          </li>
+          % end
+        </ul>
+      </div>
+    </nav>
+
+    <div style="margin: 20pt">
+      % if uporabnik:
+      <h2 align="center">Pozdravljen, {{uporabnik}}!</h2>
+      <div style="font-size: 14pt">
+        <li>
+          Hitro napovej rezultate in premagaj ostale! Izberi ligo, nato pa
+          napovej rezultate tekem.
+        </li>
+        <li>
+          Tekme moraš napovedati vsaj en dan pred začetkom tekme, saj se bo
+          napoved zaklenila na dan tekme.
+        </li>
+      </div>
+      % else:
+      <h2 align="center">Napovej in zmagaj!</h2>
+      <div style="font-size: 14pt">
+        <ul>
+          <li>Registriraj oz. prijavi se in premagaj ostale!</li>
+          <li>
+            Tekme moraš napovedati vsaj en dan pred začetkom tekme, saj se bo
+            napoved zaklenila na dan tekme.
+          </li>
+        </ul>
+      </div>
+      % end
     </div>
-  </nav>
-
-  <div style="margin: 20pt;">
-  % if uporabnik:
-  <h2 align="center">Pozdravljen, {{uporabnik}}!</h2>
-  <div style="font-size: 14pt;">
-    <li>Hitro napovej rezultate in premagaj ostale! Izberi ligo, nato pa napovej rezultate tekem.</li>
-    <li>Tekme moraš napovedati vsaj en dan pred začetkom tekme, saj se bo napoved zaklenila na dan tekme.</li>
-  </div>
-  % else:
-  <h2 align="center">Napovej in zmagaj!</h2>
-  <div style="font-size: 14pt;">
-    <ul>
-    <li>Registriraj oz. prijavi se in premagaj ostale!</li>
-    <li>Tekme moraš napovedati vsaj en dan pred začetkom tekme, saj se bo napoved zaklenila na dan tekme.</li>
-    </ul>
-  </div>
-  % end
-  </div>
-
-</body>
+  </body>
 </html>

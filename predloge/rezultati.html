@@ -12,36 +12,13 @@
         <a class="navbar-brand" style="font-size: 16pt;" href="{{ROOT}}">napovej.si</a>
       </div>
       <ul class="nav navbar-nav">
-        % if liga == "1":
-        <li class="active"><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
+        % if liga == "6":
+        <!-- <li class="active"><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
         <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
         <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
         <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
-        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
-        % elif liga == "2":
-        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
-        <li class="active"><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
-        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
-        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
-        % elif liga == "3":
-        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
-        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
-        <li class="active"><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
-        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
-        % elif liga == "4":
-        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
-        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
-        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
-        <li class="active"><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
-        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
-        % elif liga == "5":
-        <li><a href="{{ROOT}}1/{{current_krog}}">Anglija</a></li>
-        <li><a href="{{ROOT}}2/{{current_krog}}">Italija</a></li>
-        <li><a href="{{ROOT}}3/{{current_krog}}">Nemčija</a></li>
-        <li><a href="{{ROOT}}4/{{current_krog}}">Španija</a></li>
-        <li class="active"><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li>
+        <li><a href="{{ROOT}}5/{{current_krog}}">Francija</a></li> -->
+        <li class="active"><a href="{{ROOT}}6/{{current_krog}}">Euro U21</a></li>
         % end
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -57,41 +34,9 @@
   </nav>
 
 <div style="width: 70%; float:left; padding: 20pt; padding-top: 0; overflow: hidden;  border-right: 1pt solid grey; height: 100%;" align="left">
-% lige = {"1": "Premier League", "2": "Serie A", "3": "Bundesliga", "4": "Primera Division", "5": "Ligue 1"}
+% lige = {"1": "Premier League", "2": "Serie A", "3": "Bundesliga", "4": "Primera Division", "5": "Ligue 1", "6": "Euro U21"}
 % lig = lige[liga]
 <h2>{{lig}}, krog {{krog}}</h2>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    % zadnji_krog = "34" if liga == "3" else "38"
-    % if int(krog) <= 3:
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">1</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/2">2</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/3">3</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/4">4</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/5">5</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/6">...</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
-    % elif int(krog) >= int(zadnji_krog)-2:
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">Prvi krog</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-5)}}">...</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-4)}}">{{str(int(zadnji_krog)-4)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-3)}}">{{str(int(zadnji_krog)-3)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-2)}}">{{str(int(zadnji_krog)-2)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(zadnji_krog)-1)}}">{{str(int(zadnji_krog)-1)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{zadnji_krog}}">{{zadnji_krog}}</a></li>
-    % else:
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">Prvi krog</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)-3)}}">...</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)-2)}}">{{str(int(krog)-2)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)-1)}}">{{str(int(krog)-1)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{krog}}">{{krog}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)+1)}}">{{str(int(krog)+1)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)+2)}}">{{str(int(krog)+2)}}</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{str(int(krog)+3)}}">...</a></li>
-      <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/{{zadnji_krog}}">Zadnji krog</a></li>
-    % end
-  </ul>
-</nav>
 
 <form id="napovediForm" action="{{ROOT}}dodaj-napovedi/ni_napovedi" method="post">
 <table class="table">
@@ -114,9 +59,13 @@
     <tr>
       % dan = tekma[4].day
       % mesec = tekma[4].month
-      <td style="width: 10%">{{dan}}.{{mesec}}.</td>
+      % ura = tekma[5]
+      % ura_to_DT = list(map(lambda x: int(x), ura.split(":")))
+      % import datetime
+      % uraDT = datetime.time(ura_to_DT[0],ura_to_DT[1],0)
+      <td style="width: 10%">{{dan}}.{{mesec}}. {{ura}}</td>
       <td style="width: 25%" style="vertical-align: middle;">{{dom}}</td>
-      % if tekma[4] > datum:
+      % if tekma[4] > datum or (tekma[4] == datum and uraDT > ura_now):
       <td style="width: 10%" align="center"><input id="dom{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_dom}}" oninput="dodaj_trenutno_napoved(this.id)" oninvalid="this.setCustomValidity('Vnesite rezultat med 0 in 20')"></td>
       <td style="width: 10%" align="center">&nbsp&nbsp&nbsp</td>
       <td style="width: 10%" align="center"><input id="gos{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_gos}}" oninput="dodaj_trenutno_napoved(this.id)" oninvalid="this.setCustomValidity('Vnesite rezultat med 0 in 20')"></td>
@@ -143,7 +92,7 @@
   %end
 </table>
 
-% if any(d > datum for d in datumi) and uporabnik != None:
+% if any(d >= datum for d in datumi) and uporabnik != None:
 <div align="center">
 <button class="btn btn-primary" onclick="submit_form()">Napovej</button>
 % if napovedi_shranjene:
@@ -185,30 +134,20 @@
   % uporabnik_dodan = False
   % tocke_nic = "-"
   %for (up_ime, tocke) in uporabniki:
-    % if tocke == 0 and tocke_nic == "-":
-      % tocke_nic = count
-    % end
     % if up_ime == uporabnik:
       <tr style="background-color: aliceblue;">
         <td>{{count}}</td>
         <td>{{up_ime}}</td>
         <td align="center">{{tocke}}</td>
       </tr>
-      <tr><td colspan="3">...</td></tr>
       % uporabnik_dodan = True
-      % break
     % else:
-      % if count <= 6:
       <tr>
         <td>{{count}}</td>
         <td>{{up_ime}}</td>
         <td align="center">{{tocke}}</td>
       </tr>
-      % elif count == 7:
-      <tr><td colspan="3">...</td></tr>
-      % end
     % end
-    % count += 1
   %end
 % if uporabnik != None and not uporabnik_dodan: # to pomeni, da uporabnik še nima točk
   <tr style="background-color: aliceblue;">

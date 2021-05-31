@@ -12,7 +12,7 @@ import psycopg2, psycopg2.extensions, psycopg2.extras
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODE) # se znebimo problemov s šumniki
 
 # ostale knjiznice
-from datetime import date
+import datetime
 import ast
 import os
 
@@ -384,7 +384,7 @@ def liga(liga,krog):
         trenuten_krog = krog
     cur.execute(
         """
-        SELECT tekme.stevilka, K1.ime_ekipe, K2.ime_ekipe, tekme.rezultat, tekme.datum FROM tekme
+        SELECT tekme.stevilka, K1.ime_ekipe, K2.ime_ekipe, tekme.rezultat, tekme.datum, tekme.ura FROM tekme
         JOIN klubi AS K1 ON tekme.domaca_ekipa = K1.id 
         JOIN klubi AS K2 ON tekme.gostujoca_ekipa = K2.id
         WHERE tekme.liga = %s AND tekme.krog = %s
@@ -417,7 +417,8 @@ def liga(liga,krog):
         (liga,)
     )
     uporabniki = cur.fetchall()
-    datum = date.today()
+    datum = datetime.datetime.now().date()
+    ura_now = datetime.datetime.now().time()
     return rtemplate(
         "predloge/rezultati.html",
         tekme=tekme,
@@ -426,6 +427,7 @@ def liga(liga,krog):
         uporabniki=uporabniki,
         uporabnik=uporabnik,
         datum=datum,
+        ura_now=ura_now,
         napovedi=napovedi,
         napaka_pri_vnosu=napaka_pri_vnosu,
         napovedi_shranjene=napovedi_shranjene,
@@ -452,10 +454,10 @@ spremenjeno = False
 uporabnik = None
 uporabnik_id = None
 
-trenutna_liga = 1
-trenuten_krog = 29
+trenutna_liga = 6
+trenuten_krog = 1
 # lahko je igralni krog za vsako ligo posebaj
-igralni_krog = 29
+igralni_krog = 1
 napaka_pri_vnosu = False
 napovedi_shranjene = False
 
