@@ -55,6 +55,7 @@
       % if uporabnik:
       <h2 align="center">Pozdravljen, {{uporabnik}}!</h2>
       <div style="font-size: 14pt">
+        <ul>
         <li>
           Hitro napovej rezultate in premagaj ostale! Izberi ligo, nato pa
           napovej rezultate tekem.
@@ -63,6 +64,16 @@
           Tekme moraš napovedati pred začetkom tekme, saj se bo
           nato napoved za tekmo zaklenila.
         </li>
+      </ul>
+        <h4>Pravila točkovanja</h4>
+        <ul>
+        <li>Če pravilno napoveš točen rezultat, dobiš 5 točk (npr. napoveš 2-1, rezultat je 2-1 ALI napoveš 1-1, rezultat je 1-1</li>
+        <li>Če pravilno napoveš zmagovalca in hkrati še gol razliko ALI pravilno napoveš remi (napoved ni enaka točnemu rezultatu), dobiš 3 točke 
+          (npr. napoveš 2-0, rezultat je 3-1 ALI napoveš 1-1, rezultat je 0-0) </li>
+        <li>Če pravilno napoveš zmagovalca (gol razlike pa ne), dobiš 2 točki (npr. napoveš 2-0, rezultat je 1-0)</li>
+        <li>Če zgrešiš tip napovedi (recimo napoveš, da bo zmagala prva ekipa, zmaga pa druga ekipa ali pa se tekma konča z remijem), dobiš 0 točk</li>
+      </ul>
+      Če ima več uporabnikov po koncu tekmovanja enako število točk, zmaga tisti, ki ima manjšo gol razliko od točnih napovedi.
       </div>
       % else:
       <h2 align="center">Napovej in zmagaj!</h2>
@@ -74,6 +85,15 @@
             nato napoved za tekmo zaklenila.
           </li>
         </ul>
+          <h3>Pravila točkovanja</h3>
+          <ul>
+          <li>Če pravilno napoveš točen rezultat, dobiš 5 točk (npr. napoveš 2-1, rezultat je 2-1 ALI napoveš 1-1, rezultat je 1-1</li>
+          <li>Če pravilno napoveš zmagovalca in hkrati še gol razliko ALI pravilno napoveš remi (napoved ni enaka točnemu rezultatu), dobiš 3 točke 
+            (npr. napoveš 2-0, rezultat je 3-1 ALI napoveš 1-1, rezultat je 0-0) </li>
+          <li>Če pravilno napoveš zmagovalca (gol razlike pa ne), dobiš 2 točki (npr. napoveš 2-0, rezultat je 1-0)</li>
+          <li>Če zgrešiš tip napovedi (recimo napoveš, da bo zmagala prva ekipa, zmaga pa druga ekipa ali pa se tekma konča z remijem), dobiš 0 točk</li>
+        </ul>
+        Če ima več uporabnikov po koncu tekmovanja enako število točk, zmaga tisti, ki ima manjšo gol razliko od točnih napovedi.
       </div>
       % end
     </div>
