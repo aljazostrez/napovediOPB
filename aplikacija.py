@@ -426,8 +426,6 @@ def liga(liga,krog):
         krog=krog,
         uporabniki=uporabniki,
         uporabnik=uporabnik,
-        datum=datum,
-        ura_now=ura_now,
         napovedi=napovedi,
         napaka_pri_vnosu=napaka_pri_vnosu,
         napovedi_shranjene=napovedi_shranjene,

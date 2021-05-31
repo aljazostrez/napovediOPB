@@ -63,6 +63,8 @@
       % ura_to_DT = list(map(lambda x: int(x), ura.split(":")))
       % import datetime
       % uraDT = datetime.time(ura_to_DT[0],ura_to_DT[1],0)
+      % datum = datetime.datetime.now().date()
+      % ura_now = datetime.datetime.now().time()
       <td style="width: 10%">{{dan}}.{{mesec}}. {{ura}}</td>
       <td style="width: 25%" style="vertical-align: middle;">{{dom}}</td>
       % if tekma[4] > datum or (tekma[4] == datum and uraDT > ura_now):
