@@ -76,7 +76,7 @@
       <td style="width: 10%" align="center">{{rez}}</td>
       <td style="width: 10%" align="center"><input id="gos{{id}}" type="number" min="0" max="20" style="width: 40pt; text-align: left" maxlength="2" value="{{rez_gos}}" disabled></td>
       % end
-      <td style="width: 25%" align="right">{{gos}}</td>
+      <td style="width: 25%" align="right">{{gos}} {{ura_now}}</td>
       % if tekma[4] <= datum and rez not in ["Prestavljena", "Neodigrana"] and uporabnik != None:
         % if tocke == 5:
           <td style="width: 10%; color: green" align="right">{{tocke}}</td>
