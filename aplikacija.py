@@ -388,7 +388,7 @@ def liga(liga,krog):
         JOIN klubi AS K1 ON tekme.domaca_ekipa = K1.id 
         JOIN klubi AS K2 ON tekme.gostujoca_ekipa = K2.id
         WHERE tekme.liga = %s AND tekme.krog = %s
-        ORDER BY datum
+        ORDER BY datum, tekme.ura
         """,
         (str(liga),str(krog))
     )

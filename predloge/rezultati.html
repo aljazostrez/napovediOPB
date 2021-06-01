@@ -36,7 +36,19 @@
 <div style="width: 70%; float:left; padding: 20pt; padding-top: 0; overflow: hidden;  border-right: 1pt solid grey; height: 100%;" align="left">
 % lige = {"1": "Premier League", "2": "Serie A", "3": "Bundesliga", "4": "Primera Division", "5": "Ligue 1", "6": "Euro U21"}
 % lig = lige[liga]
-<h2>{{lig}}, krog {{krog}}</h2>
+% KO =  ""
+% if krog == "1":
+% KO = "Četrtfinale"
+% elif krog == "2":
+% KO = "Polfinale"
+% end
+<h2>{{lig}}, krog {{krog}} ({{KO}})</h2>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/1">1</a></li>
+    <li class="page-item"><a class="page-link" href="{{ROOT}}{{liga}}/2">2</a></li>
+  </ul>
+</nav>
 
 <form id="napovediForm" action="{{ROOT}}dodaj-napovedi/ni_napovedi" method="post">
 <table class="table">
