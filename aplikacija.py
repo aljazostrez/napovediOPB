@@ -453,9 +453,9 @@ uporabnik = None
 uporabnik_id = None
 
 trenutna_liga = 6
-trenuten_krog = 1
+trenuten_krog = 2
 # lahko je igralni krog za vsako ligo posebaj
-igralni_krog = 1
+igralni_krog = 2
 napaka_pri_vnosu = False
 napovedi_shranjene = False
 
