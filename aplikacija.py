@@ -453,9 +453,9 @@ uporabnik = None
 uporabnik_id = None
 
 trenutna_liga = 6
-trenuten_krog = 2
+trenuten_krog = 3
 # lahko je igralni krog za vsako ligo posebaj
-igralni_krog = 2
+igralni_krog = 3
 napaka_pri_vnosu = False
 napovedi_shranjene = False
 
@@ -475,4 +475,4 @@ posodobi_tocke()
 ####################
 
 # poženemo strežnik na podanih vratih, npr. http://localhost:8080/
-run(host='localhost', port=SERVER_PORT, reloader=RELOADER)
+run(host='0.0.0.0', port=SERVER_PORT, reloader=RELOADER)
